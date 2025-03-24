@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Proposal Website</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #ff80ab, #b3e5fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+            perspective: 1500px; /* 3D perspective */
+            transform-style: preserve-3d;
+            animation: backgroundAnimation 8s infinite ease-in-out;
+        }
+
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #ff80ab, #b3e5fc);
+            }
+            50% {
+                background: linear-gradient(135deg, #f7b7a3, #ffd699);
+            }
+            100% {
+                background: linear-gradient(135deg, #ff80ab, #b3e5fc);
+            }
+        }
+
+        .container {
+            position: relative;
+            width: 80%;
+            max-width: 700px;
+            height: 80%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            animation: slideDown 2s ease-out;
+            transform: rotateY(10deg);
+            transition: transform 1.5s ease;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100px) rotateY(45deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0) rotateY(0deg);
+                opacity: 1;
+            }
+        }
+
+        .message:hover {
+            transform: rotateY(0deg) scale(1.05);
+        }
+
+        h1 {
+            font-size: 50px;
+            color: #ff1493;
+            text-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+            animation: text3D 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes text3D {
+            0% {
+                transform: translateZ(-100px) rotateX(20deg);
+            }
+            50% {
+                transform: translateZ(50px) rotateX(0deg);
+            }
+            100% {
+                transform: translateZ(-100px) rotateX(20deg);
+            }
+        }
+
+        .heart {
+            font-size: 100px;
+            color: #e74c3c;
+            animation: heartBeat 1.5s ease-in-out infinite;
+            margin-top: 20px;
+        }
+
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.3);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .pickup-line {
+            font-size: 22px;
+            font-style: italic;
+            color: #f39c12;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeInOut 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+
+        .pickup-line:nth-child(odd) {
+            animation-delay: 2s;
+        }
+
+        .pickup-line:nth-child(even) {
+            animation-delay: 4s;
+        }
+
+        .sparkles {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: #fff;
+            animation: sparkleAnimation 1.5s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes sparkleAnimation {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+        }
+
+        .scroll-container {
+            position: absolute;
+            width: 100%;
+            height: 200%;
+            top: 0;
+            left: 0;
+            z-index: -2;
+            animation: scrollEffect 12s linear infinite;
+        }
+
+        @keyframes scrollEffect {
+            0% {
+                transform: translateY(0) rotateX(0deg);
+            }
+            50% {
+                transform: translateY(-50%) rotateX(10deg);
+            }
+            100% {
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 40px;
+            }
+
+            .heart {
+                font-size: 80px;
+            }
+
+            .pickup-line {
+                font-size: 18px;
+            }
+
+            .sparkles {
+                font-size: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-container"></div>
+    
+    <div class="container">
+        <div class="message">
+            <h1>💖 I Love You 💖</h1>
+            <div class="heart">❤️</div>
+            <div class="pickup-line" id="line1">"তুমি আমার হৃদয়ের একমাত্র রাজকুমারী।"</div>
+            <div class="pickup-line" id="line2">"তুমি যদি কখনো আমার পাশে না থাকো, আমার দুনিয়া শূন্য মনে হয়।"</div>
+            <div class="pickup-line" id="line3">"তুমি ছাড়া সবকিছু অর্থহীন।"</div>
+            <div class="pickup-line" id="line4">"তুমি আমার পৃথিবী, আমার জীবন।"</div>
+        </div>
+
+        <div class="sparkles">✨✨✨</div>
+    </div>
+
+    <script>
+        // Pickup lines in Bangla
+        let lines = [
+            "তুমি আমার হৃদয়ের একমাত্র রাজকুমারী।",
+            "তুমি যদি কখনো আমার পাশে না থাকো, আমার দুনিয়া শূন্য মনে হয়।",
+            "তুমি ছাড়া সবকিছু অর্থহীন।",
+            "তুমি আমার পৃথিবী, আমার জীবন।"
+        ];
+        
+        let lineIndex = 0;
+        let lineElements = document.querySelectorAll('.pickup-line');
+        
+        // Function to change lines
+        function changeLine() {
+            lineElements.forEach((line, index) => {
+                line.style.opacity = 0; // Hide all lines initially
+            });
+
+            lineElements[lineIndex].style.opacity = 1; // Show current line
+
+            lineIndex++;
+            if (lineIndex >= lines.length) {
+                lineIndex = 0;
+            }
+        }
+
+        // Start the line change with an interval of 3 seconds
+        setInterval(changeLine, 3000);
+
+        // Set initial line visibility
+        changeLine();
+    </script>
+
+</body>
+</html>
